@@ -18,12 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
         'prenom',
-        'pseudo',
         'email',
         'password',
-        
+        'newPassword',
+        'oldpassword', 
     ];
 
     /**
@@ -48,16 +48,20 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo('App/Models/Roles'); 
     }
+    
     public function avis(){
         return $this->hasMany('App/Models/Avis'); 
     }
+
     public function commandes(){
         return $this->hasMany('App/Models/Commandes'); 
     }
-    public function article(){
-        return $this->hasMany('App/Models/Articles'); 
-    }   
+
+    public function favoris(){
+        return $this->belongsToMany(Article::class , 'favoris'); 
+    } 
+
     public function adresses(){
-        return $this->hasMany('App/Models/Adresses'); 
+        return $this->hasMany(Adresse::class); 
     }  
 }

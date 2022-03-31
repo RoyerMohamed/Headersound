@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth; 
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,23 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get("/profil" ,[App\Http\Controllers\UserController::class , 'show'] )->name('profil'); 
+Route::put("/profil/{user}" ,[App\Http\Controllers\UserController::class , 'update'] )->name('profil.update'); 
+
+Route::put('/profil/updatePassword',  [App\Http\Controllers\UserController::class, 'updatePassword'])->name('profil.updatePassword'); 
+Route::delete('profil/delete',  [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
+
+
+Route::get("/adresse" ,[App\Http\Controllers\AdresseController::class , 'show'])->name('adresse'); 
+Route::put("/adresse/{adresse}" ,[App\Http\Controllers\AdresseController::class , 'update'])->name('adresse.update');
+Route::post("/adresse/store" ,[App\Http\Controllers\AdresseController::class , 'store'])->name('adresse.store'); 
+Route::delete("/adresse/{adresse}" ,[App\Http\Controllers\AdresseController::class , 'delete'])->name('adresse.delete'); 
+
+// Route::resource("/adresse" , App\Http\Controllers\AdresseController::class ); 
+Route::resource("/article" , App\Http\Controllers\ArticleController::class ); 
+Route::resource("/avis" , App\Http\Controllers\AvisController::class ); 
+Route::resource("/campagne" , App\Http\Controllers\CampagneController::class ); 
+Route::resource("/commande" , App\Http\Controllers\CommandeController::class ); 
+Route::resource("/gamme" , App\Http\Controllers\GammeController::class ); 
+Route::resource("/role" , App\Http\Controllers\RoleController::class ); 
