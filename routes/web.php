@@ -34,8 +34,17 @@ Route::put("/adresse/{adresse}" ,[App\Http\Controllers\AdresseController::class 
 Route::post("/adresse/store" ,[App\Http\Controllers\AdresseController::class , 'store'])->name('adresse.store'); 
 Route::delete("/adresse/{adresse}" ,[App\Http\Controllers\AdresseController::class , 'delete'])->name('adresse.delete'); 
 
-// Route::resource("/adresse" , App\Http\Controllers\AdresseController::class ); 
-Route::resource("/article" , App\Http\Controllers\ArticleController::class ); 
+// Route::resource("/article" , App\Http\Controllers\ArticleController::class ); 
+
+Route::get("/boutique" ,[App\Http\Controllers\articleController::class , 'index'])->name('boutique'); 
+Route::put("/article/{article}" ,[App\Http\Controllers\articleController::class , 'update'])->name('article.update');
+Route::post("/article/store" ,[App\Http\Controllers\articleController::class , 'store'])->name('article.store'); 
+Route::delete("/article/{article}" ,[App\Http\Controllers\articleController::class , 'delete'])->name('article.delete'); 
+
+
+
+
+
 Route::resource("/avis" , App\Http\Controllers\AvisController::class ); 
 Route::resource("/campagne" , App\Http\Controllers\CampagneController::class ); 
 Route::resource("/commande" , App\Http\Controllers\CommandeController::class ); 

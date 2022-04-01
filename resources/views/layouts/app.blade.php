@@ -72,6 +72,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profil') }}">{{ __('mon compte') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('boutique') }}">{{ __('Boutique') }}</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
