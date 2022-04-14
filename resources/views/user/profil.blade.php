@@ -87,18 +87,18 @@
 
     <div class="container text-center w-50 add-message ">
         <h2>modifier votre mot de passe</h2>
-        <form method="POST" action="{{ route('profil.updatePassword') }}" class="pt-3 pb-3">
+        <form method="POST" action="{{ route('updatePassword') }}" class="pt-3 pb-3">
             @csrf
             @method("PUT")
 
             <div class="mb-3">
                 <label for="oldpassword" class="form-label">enter votre ancien mot de passe </label>
-                <input name="oldpassword" type="text" class="form-control" id="oldpassword" aria-describedby="emailHelp">
+                <input name="oldpassword" type="password" class="form-control" id="oldpassword" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
                 <label for="newPassword" class="form-label">enter votre nouvau mot de passe</label>
-                <input name="newPassword" type="text" class="form-control" id="newPassword">
+                <input name="newPassword" type="password" class="form-control" id="newPassword">
             </div>
 
             <input type="submit" class="btn btn-primary" value="Valider">

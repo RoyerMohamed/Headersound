@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -88,16 +88,15 @@ class UserController extends Controller
 
     public function updatePassword(Request $request){
         $user = Auth::user(); 
-        dd($request); 
-
         $request->validate([
             'oldpassword' => 'required|min:3|max:50',
-            'newPassword' => 'required|min:3|max:50',
-            'password-confirm'=>['required', Password::min(8)
+            'newPassword' => ['required',
+             Password::min(8)
             ->letters()
             ->mixedCase()
-            ->numbers()]
+            ->numbers()],
         ]);
+        
         //verif 
         if(Hash::check($request->input('oldpassword') , $user->password) ){
             if($request->input('newPassword') !== $request->input('oldpassword')){

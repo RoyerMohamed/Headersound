@@ -23,7 +23,7 @@ class Article extends Model
     }
 
     public function gamme(){
-        return $this->belongsTo('App/Models/Gamme'); 
+        return $this->belongsTo(Gamme::class ); 
     }
 
     public function campagnes(){
