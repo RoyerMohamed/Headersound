@@ -9,6 +9,14 @@ class Commande extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'numero',
+        'prix',
+        'adresse_facturation_id',
+        'adresse_livraison_id',
+        'user_id',
+    ];
+
     public function user(){
         return $this->belongsTo('App/Models/User'); 
     }

@@ -27,9 +27,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable(); 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
-            $table->unsignedBigInteger('adresse_id')->nullable(); 
-            $table->foreign('adresse_id')->references('id')->on('adresses')->onDelete('set null');
-
             $table->timestamps();
         });
     }

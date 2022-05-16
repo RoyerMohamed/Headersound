@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Commande;
 use Illuminate\Http\Request;
+use Auth; 
 
 class CommandeController extends Controller
 {
@@ -16,7 +17,17 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Commande::create([
+            "numero"=> rand(1000000 , 9999999), 
+            "prix" => $request->total, 
+            "adresse_facturation_id"=> session()->get('adresse_de_facturation')->id , 
+            "adresse_livraison_id"=> session()->get('adresse_livraision')->id , 
+            "user_id"=> Auth::user()->id
+        ]); 
+        return redirect()->back()->with('success', ' Votre commande a bien été validé !!!');
+
+
+        // store order in data base 
     }
 
     /**

@@ -17,7 +17,7 @@ class AdresseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "adresse"=>"max:25", 
+            "adresse"=>"max:50", 
             "code_postal"=>"max:5",
             "ville"=>"max:25", 
         ]); 

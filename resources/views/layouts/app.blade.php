@@ -75,6 +75,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('boutique') }}">{{ __('Boutique') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('panier') }}">{{ __('Panier') }}</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
@@ -96,6 +99,12 @@
                 </div>
             @endif
         </div>
+
+@if(session('success'))
+<div class="alert alert-success text-center">
+    {{session('success')}}
+</div>
+@endif
 
         <main class="py-4">
             @yield('content')

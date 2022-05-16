@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <h1 class="text-center mb-5 mt-5">Ma boutique </h1>
 
@@ -22,8 +23,15 @@
                                     <input type="submit" class="btn btn-primary" value="details du produit">
                                     <input type="hidden" class="btn btn-primary" value="{{ $article->id }}" name="article_id">
                                 </form>
-                                <form method="POST" action="{{ route('addToCart') }}">
+                                <form method="POST" action="{{ route('panier.ajouter_au_panier') }}">
                                     @csrf
+                                    <input type="hidden" name="id" value="{{$article->id}} ">
+                                    <input type="hidden" name="nom" value="{{ $article->nom }} ">
+                                    <input type="hidden" name="prix" value="{{$article->prix}} ">
+                                    <input type="hidden" name="description" value="{{$article->description}} ">
+                                    <input type="hidden" name="article" value="{{$article}} ">
+
+                                    <input type="number" name="quantite" value="1" >
                                     <input type="submit" value="Ajouter au panier" class="btn btn-primary">
                                 </form>
                     </div>

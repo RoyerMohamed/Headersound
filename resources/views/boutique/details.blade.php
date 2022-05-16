@@ -30,8 +30,12 @@
              
                 <p>{{ $article->description_detaillee }}</p>
                 <div class="col">
-                    <form method="POST">
+                    <form method="POST" action="{{ route('panier.ajouter_au_panier') }}">
                         @csrf
+                        <input type="hidden" name="id" value="{{$article->id}} ">
+                        <input type="hidden" name="nom" value="{{ $article->nom }} ">
+                        <input type="hidden" name="prix" value="{{$article->prix}} ">
+                        <input type="number" name="quantite" >
                         <input type="submit" value="Ajouter au panier" class="btn btn-primary">
                     </form>
                 </div>
