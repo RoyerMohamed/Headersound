@@ -105,6 +105,32 @@
         </form>
     </div>
 </div>  
-  
- 
+  <div class="container w-50">
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">numéro</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Date</th>
+            <th scope="col">Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($user->commandes as $commande)
+            <tr>
+              <th scope="row">{{$commande->numero}}</th>
+              <td>{{$commande->prix}} €</td>
+              <td>{{$commande->created_at}}</td>
+              <td>  
+                  <form action="{{route('commande.show')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $commande->id }}">
+                    <input type="submit" class="btn btn-primary" value="details">
+                  </form>
+              </td>
+            </tr>  
+            @endforeach
+        </tbody>
+      </table>
+</div>
 @endsection

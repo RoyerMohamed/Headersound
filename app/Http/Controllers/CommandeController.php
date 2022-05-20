@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Commande;
 use Illuminate\Http\Request;
-use Auth; 
+use Auth;
+use Illuminate\Console\Command;
 
 class CommandeController extends Controller
 {
@@ -17,17 +18,21 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        Commande::create([
+        $commande =  Commande::create([
             "numero"=> rand(1000000 , 9999999), 
             "prix" => $request->total, 
             "adresse_facturation_id"=> session()->get('adresse_de_facturation')->id , 
             "adresse_livraison_id"=> session()->get('adresse_livraision')->id , 
             "user_id"=> Auth::user()->id
         ]); 
-        return redirect()->back()->with('success', ' Votre commande a bien été validé !!!');
 
-
-        // store order in data base 
+        $commande_id = $commande->id;
+        $last_insert_order = Commande::find(intval($commande_id)); 
+        foreach( session()->get('cart') as $articles){
+            $last_insert_order->articles()->attach(intval($articles["id"]) , ['quantite' => $articles["quantite"] , 'reduction' => 0]);  
+        }
+        session()->forget('cart'); 
+        return redirect('home')->with('success', ' Votre commande a bien été validé !!!');
     }
 
     /**
@@ -36,9 +41,11 @@ class CommandeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $commande = Commande::find(intval($request->id)); 
+        $commande->load("articles"); 
+        return view('commande.index' , compact('commande'));
     }
 
     /**
@@ -51,6 +58,8 @@ class CommandeController extends Controller
     {
         //
     }
+
+
 
     /**
      * Update the specified resource in storage.

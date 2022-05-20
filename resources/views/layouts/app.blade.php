@@ -78,6 +78,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('panier') }}">{{ __('Panier') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('campagne') }}">{{ __('Campagne Promo ') }}</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>

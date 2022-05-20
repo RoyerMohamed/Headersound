@@ -65,7 +65,6 @@ class AdresseController extends Controller
         $adresse->adresse = $request->input("adresse");
         $adresse->code_postal = $request->input("code_postal"); 
         $adresse->ville = $request->input("ville"); 
-        // $adresse->user_id = $request->input("user_id"); 
         $adresse->save(); 
         return redirect()->route('profil')->with('message', 'Votre adresse été modifiées');
     }

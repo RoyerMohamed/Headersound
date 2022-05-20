@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -53,3 +51,6 @@ Route::post("/validation/facturation" , [App\Http\Controllers\ValidationControll
 Route::post("/validation/frais_de_port" , [App\Http\Controllers\ValidationController::class , 'frais_de_port'] )->name('validation.frais_de_port'); 
 
 Route::post("/commande" , [App\Http\Controllers\CommandeController::class , 'store'] )->name('commande.store'); 
+Route::post("/commande/show" , [App\Http\Controllers\CommandeController::class , 'show'] )->name('commande.show'); 
+
+Route::get("/campagne" , [App\Http\Controllers\CampagneController::class , 'show'] )->name('campagne'); 

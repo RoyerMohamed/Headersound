@@ -15,6 +15,7 @@ class Commande extends Model
         'adresse_facturation_id',
         'adresse_livraison_id',
         'user_id',
+        'quantite'
     ];
 
     public function user(){

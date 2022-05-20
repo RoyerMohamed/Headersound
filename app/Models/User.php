@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
 
     public function commandes(){
-        return $this->hasMany('App/Models/Commandes'); 
+        return $this->hasMany(Commande::class); 
     }
 
     public function favoris(){

@@ -43,7 +43,7 @@ class ValidationController extends Controller
     // clasique express point relais 
 
     public function frais_de_port(Request $request){
-        session()->put('frai_de_port', $request->input('flexRadioDefault'));    
+        session()->put('frai_de_port', $request->input('flexRadioDefault')); 
         return redirect()->back()->with('success', 'les frais de port on été mit a jours !!! ');    
     }
 

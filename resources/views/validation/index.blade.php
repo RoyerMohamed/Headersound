@@ -105,8 +105,8 @@ foreach ($validation as $article){
             @if(session()->has("frai_de_port") && session()->has('adresse_de_facturation') && session()->has('adresse_livraision'))
             <form action="{{ route('commande.store') }}" method="post">
                 @csrf
-                <h3 class="pt-5 pb-3 font-weight-bold">Total à payer : {{ intval(session()->get("frai_de_port" )) + $total }} €</h3>
-                <input type="hidden" value="{{intval(session()->get("frai_de_port" )) + $total }}" name="total">
+                <h3 class="pt-5 pb-3 font-weight-bold">Total à payer : {{ session()->get("frai_de_port" ) + $total }} €</h3>
+                <input type="hidden" value="{{session()->get("frai_de_port" ) + $total }}" name="total">
                 <input type="submit" value="valider ">
             </form>
             @endif

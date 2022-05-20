@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Commande; 
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -38,7 +39,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -50,7 +51,7 @@ class UserController extends Controller
     public function show()
     {
         $user = Auth::user(); 
-        $user->load("adresses");  
+        $user->load("adresses" , "commandes"); 
         return view('user.profil' , compact('user')); 
     }
 

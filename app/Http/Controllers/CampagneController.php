@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campagne;
 use Illuminate\Http\Request;
 
 class CampagneController extends Controller
@@ -24,9 +25,10 @@ class CampagneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+       $campagnes = Campagne::get()->where('date_fin', '>', date('Y-m-d'))->load('articles');
+       return view('campagne.index', compact('campagnes')); 
     }
 
     /**
