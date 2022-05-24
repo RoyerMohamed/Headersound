@@ -63,6 +63,9 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    @if (Auth::user()->role_id === 1)
+                                        <a class="nav-link" href="{{ route('admin') }}">{{ __('Admin') }}</a>
+                                    @endif
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -81,6 +84,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('campagne') }}">{{ __('Campagne Promo ') }}</a>
                             </li>
+                           
                         @endguest
                     </ul>
                 </div>

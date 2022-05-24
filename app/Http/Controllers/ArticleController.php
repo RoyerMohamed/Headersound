@@ -8,7 +8,19 @@ use App\Models\Article;
 class ArticleController extends Controller
 {
 
+public function create(Request $request){
 
+    $request->validate([
+        "nom"=>"required", 
+        "description"=>"required",
+        "description_detaillee"=>"required",
+        "prix"=>"required",
+        "stock"=>"required",
+        "note"=>"required",
+    ]); 
+    Article::create($request->all()); 
+    return redirect()->back()->with('message', "Le produit à bien été ajouté !!! ");
+}
 
     public function index(){
         $articles =  Article::with([
@@ -19,9 +31,6 @@ class ArticleController extends Controller
         return view('boutique.index' , compact('articles')); 
     }
 
-
-    public function single_product(Request $request ){
-    }
     
     /**
      * Store a newly created resource in storage.
@@ -54,11 +63,6 @@ class ArticleController extends Controller
         return view('boutique.details' , compact('article')); 
     }
 
-    public function panier( Request $request ){
-
-        
-
-    }
 
     /**
      * Show the form for editing the specified resource.

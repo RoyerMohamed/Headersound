@@ -37,6 +37,7 @@ Route::post("/boutique/panier" ,[App\Http\Controllers\articleController::class ,
 
 Route::put("/article/{article}" ,[App\Http\Controllers\articleController::class , 'update'])->name('article.update');
 Route::post("/article/store" ,[App\Http\Controllers\articleController::class , 'store'])->name('article.store'); 
+Route::post("/article/create" ,[App\Http\Controllers\articleController::class , 'create'])->name('article.create'); 
 Route::delete("/article/{article}" ,[App\Http\Controllers\articleController::class , 'delete'])->name('article.delete'); 
 
 Route::post("/panier/ajouter_panier" , [App\Http\Controllers\PanierController::class , 'ajouter_au_panier'] )->name('panier.ajouter_au_panier'); 
@@ -54,3 +55,4 @@ Route::post("/commande" , [App\Http\Controllers\CommandeController::class , 'sto
 Route::post("/commande/show" , [App\Http\Controllers\CommandeController::class , 'show'] )->name('commande.show'); 
 
 Route::get("/campagne" , [App\Http\Controllers\CampagneController::class , 'show'] )->name('campagne'); 
+Route::get("/admin" , [App\Http\Controllers\AdminController::class , 'index'] )->name('admin'); 

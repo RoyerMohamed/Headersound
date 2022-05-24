@@ -20,6 +20,7 @@
                 <h5 class="card-title">{{ $article->nom }}</h5>
                 <p class="card-text">{{ $article->description }}</p>
                 <span class="prix">{{ $article->prix }}</span>
+                <span class="prix">{{ round( 100 * $article->prix / $campagne->reduction - $article->prix ) }}</span>
                 <br>
                 @if ($article->stock != 0)
                         <span class="btn btn-primary mt-4 mb-4">En stock</span>
@@ -37,7 +38,6 @@
                             <input type="hidden" name="prix" value="{{$article->prix}} ">
                             <input type="hidden" name="description" value="{{$article->description}} ">
                             <input type="hidden" name="article" value="{{$article}} ">
-
                             <input type="number" name="quantite" value="1" >
                             <input type="submit" value="Ajouter au panier" class="btn btn-primary">
                         </form>
@@ -46,5 +46,5 @@
         @endforeach
     </div>
 </div>
-    @endforeach
+@endforeach
 @endsection
