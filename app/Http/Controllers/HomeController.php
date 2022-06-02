@@ -30,7 +30,7 @@ class HomeController extends Controller
         }])->get(); 
 
         $campagnes = Campagne::get()->where('date_debut', '<', date('Y-m-d'))->where('date_fin', '>', date('Y-m-d'))->load('articles');
-
+        
         return view('home')->with('articles' , $articles)->with('campagnes' , $campagnes);
     }
 }

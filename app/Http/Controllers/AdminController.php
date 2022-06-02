@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Gamme;  
+use App\Models\User; 
+use App\Models\Campagne; 
 
 class AdminController extends Controller
 {
@@ -17,8 +19,10 @@ class AdminController extends Controller
     {
         $articles = Article::all(); 
         $gammes = Gamme::all(); 
+        $users = User::all(); 
+        $campagnes = Campagne::all(); 
 
-        return view("admin.index" , compact('articles' , "gammes")); 
+        return view("admin.index" , compact('articles' , "gammes" , "users" , "campagnes")); 
     }
 
     /**

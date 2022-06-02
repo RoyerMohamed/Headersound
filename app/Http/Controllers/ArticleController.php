@@ -4,22 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Gamme; 
 
 class ArticleController extends Controller
 {
 
 public function create(Request $request){
 
-    $request->validate([
-        "nom"=>"required", 
-        "description"=>"required",
-        "description_detaillee"=>"required",
-        "prix"=>"required",
-        "stock"=>"required",
-        "note"=>"required",
-    ]); 
-    Article::create($request->all()); 
-    return redirect()->back()->with('message', "Le produit à bien été ajouté !!! ");
+
 }
 
     public function index(){
@@ -40,7 +32,16 @@ public function create(Request $request){
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nom"=>"required", 
+            "description"=>"required",
+            "description_detaillee"=>"required",
+            "prix"=>"required",
+            "stock"=>"required",
+            "note"=>"required",
+        ]); 
+        Article::create($request->all()); 
+        return redirect()->back()->with('message', "Le produit à bien été ajouté !!! ");
     }
     
     /**
@@ -72,7 +73,9 @@ public function create(Request $request){
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id); 
+        $gammes = Gamme::all(); 
+        return view('admin.article' , compact('article' , 'gammes'));
     }
 
     /**
@@ -82,9 +85,27 @@ public function create(Request $request){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            "nom"=>"required", 
+            "description"=>"required",
+            "description_detaillee"=>"required", 
+            "prix"=>"required", 
+            "stock"=>"required", 
+            "note"=>"required", 
+            "gamme_id"=>"required", 
+
+        ]); 
+        $article->nom = $request->input("nom");
+        $article->description = $request->input("description"); 
+        $article->description_detaillee = $request->input("description_detaillee"); 
+        $article->prix = $request->input("prix"); 
+        $article->stock = $request->input("stock"); 
+        $article->note = $request->input("note"); 
+        $article->gamme_id = $request->input("gamme_id"); 
+        $article->save(); 
+        return redirect()->back()->with('message', 'Votre article été modifiées');
     }
 
     /**
@@ -95,6 +116,8 @@ public function create(Request $request){
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id); 
+        $article->delete(); 
+        return redirect()->back()->with('message', "Le produit à bien été supprimer !!! ");
     }
 }

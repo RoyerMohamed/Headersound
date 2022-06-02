@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="container">
+                @if(count($campagnes))
                 @foreach ($campagnes as $campagne )
                 <div class="row">
                     <h2>{{$campagne->nom}}</h2>
@@ -49,6 +50,11 @@
                     @endforeach
                 </div> 
                 @endforeach
+                @else
+                <div>
+                    <h2>pas de campagne disponible </h2>
+                </div>
+                @endif
             </div>
 
 
@@ -62,7 +68,9 @@
                 <h5 class="card-title">{{ $article->nom }}</h5>
                 <p class="card-text">{{ $article->description }}</p>
                 <span class="prix">{{ $article->prix }}</span>
+                @if(count($campagnes))
                 <span class="prix">{{ round( 100 * $article->prix / $campagne->reduction - $article->prix ) }}</span>
+                @endif
                 <br>
                 @if ($article->stock != 0)
                         <span class="btn btn-primary mt-4 mb-4">En stock</span>

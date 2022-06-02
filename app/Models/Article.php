@@ -9,6 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nom',
+        'description',
+        'description_detaillee',
+        'image',
+        'gamme_id', 
+        'prix',
+        'stock',
+        'note',   
+    ];
     
     public function users(){
         return $this->belongsToMany(User::class , 'favoris'); 

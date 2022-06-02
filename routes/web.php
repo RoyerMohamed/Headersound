@@ -24,7 +24,7 @@ Route::get("/profil" ,[App\Http\Controllers\UserController::class , 'show'] )->n
 Route::put("/profil/{user}" ,[App\Http\Controllers\UserController::class , 'update'] )->name('profil.update'); 
 
 Route::put('/updatePassword',  [App\Http\Controllers\UserController::class, 'updatePassword'])->name('updatePassword'); 
-Route::delete('profil/delete',  [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
+Route::delete('profil/{delete}',  [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
 
 Route::get("/adresse" ,[App\Http\Controllers\AdresseController::class , 'show'])->name('adresse'); 
 Route::put("/adresse/{adresse}" ,[App\Http\Controllers\AdresseController::class , 'update'])->name('adresse.update');
@@ -37,8 +37,10 @@ Route::post("/boutique/panier" ,[App\Http\Controllers\articleController::class ,
 
 Route::put("/article/{article}" ,[App\Http\Controllers\articleController::class , 'update'])->name('article.update');
 Route::post("/article/store" ,[App\Http\Controllers\articleController::class , 'store'])->name('article.store'); 
-Route::post("/article/create" ,[App\Http\Controllers\articleController::class , 'create'])->name('article.create'); 
-Route::delete("/article/{article}" ,[App\Http\Controllers\articleController::class , 'delete'])->name('article.delete'); 
+Route::delete("/article/{article}" ,[App\Http\Controllers\articleController::class , 'destroy'])->name('article.delete'); 
+Route::get("/article/{edit}" ,[App\Http\Controllers\articleController::class , 'edit'])->name('article.edit'); 
+
+
 
 Route::post("/panier/ajouter_panier" , [App\Http\Controllers\PanierController::class , 'ajouter_au_panier'] )->name('panier.ajouter_au_panier'); 
 Route::get("/panier" , [App\Http\Controllers\PanierController::class , 'show'] )->name('panier'); 
@@ -55,4 +57,15 @@ Route::post("/commande" , [App\Http\Controllers\CommandeController::class , 'sto
 Route::post("/commande/show" , [App\Http\Controllers\CommandeController::class , 'show'] )->name('commande.show'); 
 
 Route::get("/campagne" , [App\Http\Controllers\CampagneController::class , 'show'] )->name('campagne'); 
+Route::post("/campagne/create" , [App\Http\Controllers\CampagneController::class , 'store'] )->name('campagne.store'); 
+Route::delete("/campagne/{delete}" , [App\Http\Controllers\CampagneController::class , 'destroy'] )->name('campagne.delete'); 
+Route::get("/campagne/{edit}" , [App\Http\Controllers\CampagneController::class , 'edit'] )->name('campagne.edit'); 
+Route::put("/campagne/{campagne}" , [App\Http\Controllers\CampagneController::class , 'update'] )->name('campagne.update'); 
+
+
 Route::get("/admin" , [App\Http\Controllers\AdminController::class , 'index'] )->name('admin'); 
+
+Route::post("/gamme/store" , [App\Http\Controllers\GammeController::class , 'store'] )->name('gamme.store');
+Route::post("/gamme/{edit}" , [App\Http\Controllers\GammeController::class , 'edit'] )->name('gamme.edit');
+Route::delete("/gamme/{delete}" , [App\Http\Controllers\GammeController::class , 'destroy'] )->name('gamme.delete'); 
+Route::put("/gamme/{gamme}" , [App\Http\Controllers\GammeController::class , 'update'] )->name('gamme.update');
